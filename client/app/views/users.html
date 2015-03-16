@@ -1,0 +1,21 @@
+<div style="position:relative;top:100px;padding-bottom:100px">
+  <table class="table">
+    <tr>
+      <th>User ID</th>
+      <th>phone</th>
+      <th>first_name</th>
+      <th>last_name</th>
+      <th>email time</th>
+      <th>address</th>
+    </tr>
+    <tr ng-repeat="user in users">
+      <td>{{ user.userid }}</td>
+      <td>{{ user.phone }}</td>
+      <td>{{ user.first_name }}</td>
+      <td>{{ user.last_name }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.address }}</td>
+    </tr>
+  </table>
+</div>
+    

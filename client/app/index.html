@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="frostApp">
   <head>
     <title>Frost</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,24 +11,24 @@
       }
     </style>
     <script>
-      function TripController($scope) {
+      function UsersController($scope) {
 
-        $scope.trips = [];
+        $scope.users = [];
         $scope.id = '';
-        $scope.user = '';
-        $scope.start = '';
-        $scope.end = '';
-        $scope.destination = '';
-        $scope.price = '';
+        $scope.phone = '';
+        $scope.first_name = '';
+        $scope.last_name = '';
+        $scope.email = '';
+        $scope.address = '';
       }
     </script>
   </head>
   <body>
-    <div class="container" ng-controller="TripController">
+    <div class="container" ng-controller="UsersController">
       <div class="navbar navbar-fixed-top navbar-inverse">
         <div class="navbar-inner">
           <div class="pull-right">
-            <a href="https://github.com/ingvildodegard/CoDrive" class="brand">CoDrive</a>
+            <a href="https://github.com/ingvildodegard/Frost" class="brand">Frost</a>
           </div>
         </div>
       </div>
@@ -41,21 +41,21 @@
             <thead>
               <tr>
                 <th class="span1">Id</th>
-                <th class="span2">User</th>
-                <th class="span2">Start</th>
-                <th class="span2">End</th>
-                <th class="span7">Destination</th>
-                <th class="span2">Price</th>
+                <th class="span2">phone</th>
+                <th class="span2">first_name</th>
+                <th class="span2">last_name</th>
+                <th class="span7">email</th>
+                <th class="span2">address</th>
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="trip in trips">
-                <td class="span1" ng-bind="trip._id"></td>
-                <td class="span2" ng-bind="trip.user"></td>
-                <td class="span2" ng-bind="trip.start"></td>
-                <td class="span2" ng-bind="trip.end"></td>
-                <td class="span7" ng-bind="trip.destination"></td>
-                <td class="span2" ng-bind="trip.price"></td>
+              <tr ng-repeat="user in users">
+                <td class="span1" ng-bind="user._id"></td>
+                <td class="span2" ng-bind="user.phone"></td>
+                <td class="span2" ng-bind="user.first_name"></td>
+                <td class="span2" ng-bind="user.last_name"></td>
+                <td class="span7" ng-bind="user.email"></td>
+                <td class="span2" ng-bind="user.address"></td>
               </tr>
             </tbody>
           </table>
