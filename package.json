@@ -1,0 +1,14 @@
+{
+  "name": "Frost",
+  "version": "0.0.0",
+  "description": "An application used to save pictures connected to customers",
+  "main": "server.js",
+  "repository": "",
+  "author": "",
+  "dependencies": {
+    "async": "~0.2.8",
+    "express": "~3.2.4",
+    "socket.io": "~0.9.14",
+    "mongoose": "^3.8.23"
+  }
+}
