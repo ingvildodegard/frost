@@ -4,7 +4,11 @@
 var http = require('http');
 var path = require('path');
 
+
 var express = require('express');
+var mongo = require('mongoskin');
+
+var customer = require('./server/routes/customer.js');
 
 //
 // Creates a new instance of SimpleServer with the following options:
@@ -15,40 +19,27 @@ var server = http.createServer(router);
 
 router.use(express.static(path.resolve(__dirname, 'client')));
 
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://' + process.env.IP + '/users', function (error) {
-    if (error) {
-        console.log(error);
-    }else{
-      console.log("Database connected");
-    }
+var bodyParser = require('body-parser');
+router.use(bodyParser());
+
+var mongodb = mongo.db('mongodb://' + process.env.IP + '/frost', {native_parser:true});
+
+
+router.use(function(req,res,next){
+    req.db = mongodb;
+    next();
 });
 
-// Mongoose Schema definition
-var Schema = mongoose.Schema;
-var UserSchema = new Schema({
-    phone: String,
-    first_name: String,
-    last_name: String,
-    email: String,
-    address: String
-});
-
-// Mongoose Model definition
-var User = mongoose.model('users', UserSchema);
-
-router.get('/db', function (req, res) {
-    User.find({}, function (err, docs) {
-        console.log(docs + " - > docs");
-        res.json(docs);
-    });
-});
-
+router.use('/customer', customer);
 
 server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function(){
   var addr = server.address();
   console.log("Server listening at", addr.address + ":" + addr.port);
+  console.log("https://frost-ingvild1976.c9.io");
 });
   
+
   
   
+
+

@@ -10,30 +10,25 @@
         padding-top: 60px;
       }
     </style>
-    <script>
-      function TripController($scope) {
-
-        $scope.trips = [];
-        $scope.id = '';
-        $scope.user = '';
-        $scope.start = '';
-        $scope.end = '';
-        $scope.destination = '';
-        $scope.price = '';
-      }
-    </script>
   </head>
   <body>
-    <div class="container" ng-controller="TripController">
-      <div class="navbar navbar-fixed-top navbar-inverse">
-        <div class="navbar-inner">
-          <div class="pull-right">
-            <a href="https://github.com/ingvildodegard/CoDrive" class="brand">CoDrive</a>
+    <div class="container" ng-controller="CustomerController">
+      <div class="page-header">
+        <h1>Ny kunde</h1>
+        <div class="row">
+          <div class="span16">
+    				<input ng-model="customer.firstName" placeholder="Fornavn"/>
+    				<input ng-model="customer.lastName" placeholder="Etternavn"/>
+    				<input ng-model="customer.phone" placeholder="Telefon"/>
+    				<input ng-model="customer.email" placeholder="Epost"/>
+    				<button ng-click="addcustomer(customer)"> Legg til </button>
           </div>
         </div>
       </div>
+    </div>
+    <div class="container" ng-controller="CustomerController">
       <div class="page-header">
-        <h1><a href='/db'>Users</a></h1>
+        <h1><a href='/customer/all'>Kunder</a></h1>
       </div>
       <div class="row">
         <div class="span16">
@@ -41,28 +36,29 @@
             <thead>
               <tr>
                 <th class="span1">Id</th>
-                <th class="span2">User</th>
-                <th class="span2">Start</th>
-                <th class="span2">End</th>
-                <th class="span7">Destination</th>
-                <th class="span2">Price</th>
+                <th class="span2">Fornavn</th>
+                <th class="span2">Etternavn</th>
+                <th class="span2">Telefon</th>
+                <th class="span7">Epost</th>
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="trip in trips">
-                <td class="span1" ng-bind="trip._id"></td>
-                <td class="span2" ng-bind="trip.user"></td>
-                <td class="span2" ng-bind="trip.start"></td>
-                <td class="span2" ng-bind="trip.end"></td>
-                <td class="span7" ng-bind="trip.destination"></td>
-                <td class="span2" ng-bind="trip.price"></td>
+              <tr ng-repeat="customer in customers">
+                <td class="span1" ng-bind="customer._id"></td>
+                <td class="span2" ng-bind="customer.firstName"></td>
+                <td class="span2" ng-bind="customer.lastName"></td>
+                <td class="span2" ng-bind="customer.phone"></td>
+                <td class="span7" ng-bind="customer.email"></td>
+                <td class="span2"> <button ng-click="delete($index)"> Delete </button></td>
               </tr>
             </tbody>
           </table>
-
-</script>
+        </div>
+      </div>
+    </div>
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/angular.min.js"></script>
+    <script src="/scripts/controllers/customers.js"></script>
   </body>
 </html>
