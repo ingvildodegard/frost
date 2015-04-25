@@ -12,7 +12,7 @@ router.get('/deletecustomer/:id', function(req, res) {
 
 router.get('/all', function (req, res) {
     var db = req.db;
-    console.log("get/allllll");
+    console.log("get/all");
     db.collection('customer').find().toArray(function(err, result){
         console.log(result);
        res.json(result);
