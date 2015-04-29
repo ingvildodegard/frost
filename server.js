@@ -38,6 +38,29 @@ server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function(){
   console.log("https://frost-ingvild1976.c9.io");
 });
   
+var queueSocket = "amqp://tutorial:tutorial@mstutorial.cloudapp.net";
+var queueName = "Search";
+var encoding = "UTF-8";
+
+var context = require("rabbit.js").createContext(queueSocket);
+console.log("1 ");
+context.on("ready", function(){
+  console.log("2 ");
+  var sub = context.socket("SUB",  {routing: 'topic'});
+  console.log("3 ");
+  sub.connect(queueName,'*', function() {
+    sub.on("data", function (data){
+      console.log("received data %s", data);
+      var msgData = JSON.parse(data);
+      if (msgData.typeof("MessageType")="MaterialAdded"){
+          
+        
+      })
+      
+    
+  console.log("4 ");
+  })
+})
 
   
   
