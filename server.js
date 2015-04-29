@@ -8,7 +8,7 @@ var path = require('path');
 var express = require('express');
 var mongo = require('mongoskin');
 
-var customer = require('./server/routes/customer.js');
+var material = require('./server/routes/material.js');
 
 //
 // Creates a new instance of SimpleServer with the following options:
@@ -30,7 +30,7 @@ router.use(function(req,res,next){
     next();
 });
 
-router.use('/customer', customer);
+router.use('/api', material);
 
 server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function(){
   var addr = server.address();
