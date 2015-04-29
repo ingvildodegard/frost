@@ -52,17 +52,11 @@ context.on("ready", function(){
     sub.on("data", function (data){
       console.log("received data %s", data);
       var msgData = JSON.parse(data);
-      if (msgData.typeof("MessageType")="MaterialAdded"){
-          
-        
-      })
-      
-    
-  console.log("4 ");
+      if( msgData.MessageType=="MaterialAdded"){
+        console.log("Success!!");
+      }else if(msgData.MessageType=="MaterialQuantityChanged")
+      console.log("Update item!!");
   })
+  console.log("4 ");
 })
-
-  
-  
-
-
+});
