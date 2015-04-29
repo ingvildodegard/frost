@@ -10,6 +10,7 @@ var mongo = require('mongoskin');
 
 var material = require('./server/routes/material.js');
 
+
 //
 // Creates a new instance of SimpleServer with the following options:
 //  * `port` - The HTTP port to listen on. If `process.env.PORT` is set, _it overrides this value_.
@@ -43,20 +44,25 @@ var queueName = "Search";
 var encoding = "UTF-8";
 
 var context = require("rabbit.js").createContext(queueSocket);
-console.log("1 ");
+
 context.on("ready", function(){
-  console.log("2 ");
   var sub = context.socket("SUB",  {routing: 'topic'});
-  console.log("3 ");
   sub.connect(queueName,'*', function() {
     sub.on("data", function (data){
       console.log("received data %s", data);
       var msgData = JSON.parse(data);
       if( msgData.MessageType=="MaterialAdded"){
         console.log("Success!!");
+        addMaterial(msgData, mongodb);
       }else if(msgData.MessageType=="MaterialQuantityChanged")
       console.log("Update item!!");
+    })
   })
-  console.log("4 ");
-})
 });
+
+function addMaterial(body, db){
+  console.log("received body %s",body);
+    db.collection('material').insert(body, function(err, result){
+       
+    });
+}
